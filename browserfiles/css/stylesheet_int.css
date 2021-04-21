@@ -1,0 +1,135 @@
+
+body {
+	margin:0px;
+	background-color: rgba(0, 0, 0, 0);
+	font-family: "Noto Sans Heavy","Noto Sans CJK JP Heavy","OmePlus P Gothic medium",/*"MLRPG",*/ "07鉄瓶ゴシック","なごみ極細ゴシック 特細","JFドットM+H12","ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Arial,"メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	color:#FFFFFF;
+	word-break: break-all;
+}
+
+
+
+#board1 {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:1280px;
+	height:720px;
+	background-image:url('../images//interval/int_01.png');
+}
+
+#board2 {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:1280px;
+	height:720px;
+	background-image:url('../images//interval/int_02.png');
+}
+
+#board3 {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:1280px;
+	height:720px;
+	background-image:url('../images//interval/int_03.png');
+}
+
+#logo_name{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:1280px;
+	height:720px;
+}
+
+#intInfo1 {
+	position:absolute;
+	left:556px;
+	top:570px;
+	width: 100%;
+	max-width: 800px;
+	padding:0px;
+	font-size:33px;
+	font-weight: 700;
+	text-align: left;
+	color:#000;
+
+	text-shadow:
+    #FFF 2px 0px,  #FFF -2px 0px,
+    #FFF 0px -2px, #FFF 0px 2px,
+    #FFF 2px 2px , #FFF -2px 2px,
+    #FFF 2px -2px, #FFF -2px -2px,
+    #FFF 1px 2px,  #FFF -1px 2px,
+    #FFF 1px -2px, #FFF -1px -2px,
+    #FFF 2px 1px,  #FFF -2px 1px,
+    #FFF 2px -1px, #FFF -2px -1px;
+
+	letter-spacing: -1px;
+
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#stage {
+	position:absolute;
+	left:516px;
+	top:603px;
+	width:100%;
+	max-width: 800px;
+	font-size:33px;
+	font-weight: 700;
+	text-align:left;
+	color:#FFF;
+
+	text-shadow:
+	  #000 2px 0px,  #000 -2px 0px,
+	  #000 0px -2px, #000 0px 2px,
+	  #000 2px 2px , #000 -2px 2px,
+	  #000 2px -2px, #000 -2px -2px,
+	  #000 1px 2px,  #000 -1px 2px,
+	  #000 1px -2px, #000 -1px -2px,
+	  #000 2px 1px,  #000 -2px 1px,
+	  #000 2px -1px, #000 -2px -1px;
+
+	letter-spacing: -1px;
+
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#stage_typing {
+	position:absolute;
+	left:516px;
+	top:603px;
+	width:100%;
+	max-width: 800px;
+	font-size:33px;
+	font-weight: 700;
+	text-align:left;
+	color:#FFF;
+
+	text-shadow:
+	  #000 2px 0px,  #000 -2px 0px,
+	  #000 0px -2px, #000 0px 2px,
+	  #000 2px 2px , #000 -2px 2px,
+	  #000 2px -2px, #000 -2px -2px,
+	  #000 1px 2px,  #000 -1px 2px,
+	  #000 1px -2px, #000 -1px -2px,
+	  #000 2px 1px,  #000 -2px 1px,
+	  #000 2px -1px, #000 -2px -1px;
+
+	letter-spacing: -1px;
+
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes marquee {
+  from 		{ transform:translate(0);     }
+  to  {  transform:translate(-100%); }
+}

@@ -1,0 +1,784 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/stylesheet_info_1080P.css" type="text/css" charset="utf-8">
+	<script src="js/jquery-2.0.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.keyframes.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jstween-1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<meta http-equiv="content-type" charset="utf-8">
+	<script type="text/javascript">
+
+			var timestampOld;
+			var timestamp;
+
+			var gg;
+			var pName1;
+			var pSponsor1;
+			var pName1_bg;
+			var pName1_bg_R;
+			var pName1_bg_G;
+			var pName1_bg_B;
+			var pName1_sponsor_R;
+			var pName1_sponsor_G;
+			var pName1_sponsor_B;
+			var pName1_sponsor_RGB;
+			var pname1_bg_RGB;
+			var pName1_bg_R_grad;
+			var pName1_bg_G_grad;
+			var pName1_bg_B_grad;
+			var pname1_bg_RGB_grad;
+			var pName1_bg_deg;
+			var pName1_bg_grad;
+			var pName1_font_color;
+			var pName1_font_auto_color;
+
+			var pScore1;
+			var pScore1_bg;
+			var pScore1_bg_R;
+			var pScore1_bg_G;
+			var pScore1_bg_B;
+			var pScore1_bg_RGB;
+			var pScore1_bg_R_grad;
+			var pScore1_bg_G_grad;
+			var pScore1_bg_B_grad;
+			var pScore1_bg_RGB_grad;
+			var pScore1_bg_deg;
+			var pScore1_bg_grad;
+			var pScore1_font_color;
+			var pScore1_font_auto_color;
+
+			var stage;
+			var stage_typing;
+			var stage_bg;
+			var stage_bg_R;
+			var stage_bg_G;
+			var stage_bg_B;
+			var stage_bg_RGB;
+			var stage_bg_R_grad;
+			var stage_bg_G_grad;
+			var stage_bg_B_grad;
+			var stage_bg_RGB_grad;
+			var stage_bg_deg;
+			var stage_bg_grad;
+			var stage_font_color;
+			var stage_font_auto_color;
+
+			var pScore2;
+			var pScore2_bg;
+			var pScore2_bg_R;
+			var pScore2_bg_G;
+			var pScore2_bg_B;
+			var pScore2_bg_RGB;
+			var pScore2_bg_R_grad;
+			var pScore2_bg_G_grad;
+			var pScore2_bg_B_grad;
+			var pScore2_bg_RGB_grad;
+			var pScore2_bg_deg;
+			var pScore2_bg_grad;
+			var pScore2_font_color;
+			var pScore2_font_auto_color;
+
+			var pName2;
+			var pSponsor2;
+			var pName2_bg;
+			var pName2_bg_R;
+			var pName2_bg_G;
+			var pName2_bg_B;
+			var pName2_sponsor_R;
+			var pName2_sponsor_G;
+			var pName2_sponsor_B;
+			var pName2_sponsor_RGB;
+			var pName2_bg_RGB;
+			var pName2_bg_R_grad;
+			var pName2_bg_G_grad;
+			var pName2_bg_B_grad;
+			var pName2_bg_RGB_grad;
+			var pName2_bg_deg;
+			var pName2_bg_grad;
+			var pName2_font_color;
+			var pName2_font_auto_color;
+
+			var ggFullRoundText;
+			var ggPrefix_1;
+			var ggGamerTag_1;
+			var ggTwitter_1;
+			var ggPrefix_2;
+			var ggGamerTag_2;
+			var ggTwitter_2;
+
+			var xmlDoc;
+
+			var xhr = new XMLHttpRequest();
+
+			var animating = false;
+			var doUpdate = false;
+
+			function init() {
+
+				xhr.overrideMimeType('text/xml');
+
+				var timeout = this.window.setInterval(function() {
+					pollHandler();
+				}, 250);
+
+				$('#pName1').html('');
+				$('#pName1_bg').html('');
+
+				$('#pScore1').html('');
+				$('#pScore1_bg').html('');
+
+				$('#stage').html('');
+				$('#stage_typing').html('');
+				$('#stage_bg').html('');
+
+				$('#pScore2').html('');
+				$('#pScore2_bg').html('');
+
+				$('#pName2').html('');
+				$('#pName2_bg').html('');
+
+				$('#board').tween({
+				   top:{
+					  start: '0',
+					  stop: '0',
+					  units: 'px',
+					  time: 0,
+					  duration: 0.8,
+					  effect:'easeOut'
+				   }
+				});
+
+
+				$.play();
+			}
+
+			function pollHandler()
+			{
+			  loadData();
+			  if (timestamp != timestampOld) {
+				  doUpdate = true;
+			  }
+			  if (!animating && doUpdate) {
+				  updateBoard();
+			  }
+			}
+
+			function loadData() {
+				xhr.open('GET', 'streamcontrol.xml');
+				xhr.send();
+				xhr.onreadystatechange = function(){
+						xmlDoc = xhr.responseXML;
+
+						pName1 = getValueFromTag(xmlDoc,'pName1');
+						pSponsor1 = getValueFromTag(xmlDoc,'pSponsor1');
+						pName1_bg_R = getValueFromTag(xmlDoc,'pName1_bg_R');
+						pName1_bg_G = getValueFromTag(xmlDoc,'pName1_bg_G');
+						pName1_bg_B = getValueFromTag(xmlDoc,'pName1_bg_B');
+						pName1_sponsor_R = getValueFromTag(xmlDoc,'pName1_sponsor_R');
+						pName1_sponsor_G = getValueFromTag(xmlDoc,'pName1_sponsor_G');
+						pName1_sponsor_B = getValueFromTag(xmlDoc,'pName1_sponsor_B');
+						pName1_sponsor_RGB = pName1_sponsor_R +','+ pName1_sponsor_G +','+ pName1_sponsor_B;
+						pName1_bg_R_grad = getValueFromTag(xmlDoc,'pName1_bg_R_grad');
+						pName1_bg_G_grad = getValueFromTag(xmlDoc,'pName1_bg_G_grad');
+						pName1_bg_B_grad = getValueFromTag(xmlDoc,'pName1_bg_B_grad');
+						pName1_bg_RGB = pName1_bg_R +','+ pName1_bg_G +','+ pName1_bg_B;
+						pName1_bg_RGB_grad =  pName1_bg_R_grad +','+ pName1_bg_G_grad +','+ pName1_bg_B_grad;
+						pName1_bg_deg = getValueFromTag(xmlDoc,'pName1_bg_deg');
+						pName1_bg_grad = getValueFromTag(xmlDoc,'pName1_bg_grad');
+						pName1_font_color = getValueFromTag(xmlDoc,'pName1_font_color');
+						pName1_font_auto_color = parseInt(pName1_bg_R) + parseInt(pName1_bg_G) + parseInt(pName1_bg_B);
+
+						pScore1 = getValueFromTag(xmlDoc,'pScore1');
+						pScore1_bg_R = getValueFromTag(xmlDoc,'pScore1_bg_R');
+						pScore1_bg_G = getValueFromTag(xmlDoc,'pScore1_bg_G');
+						pScore1_bg_B = getValueFromTag(xmlDoc,'pScore1_bg_B');
+						pScore1_bg_R_grad = getValueFromTag(xmlDoc,'pScore1_bg_R_grad');
+						pScore1_bg_G_grad = getValueFromTag(xmlDoc,'pScore1_bg_G_grad');
+						pScore1_bg_B_grad = getValueFromTag(xmlDoc,'pScore1_bg_B_grad');
+						pScore1_bg_RGB = pScore1_bg_R +','+ pScore1_bg_G +','+ pScore1_bg_B;
+						pScore1_bg_RGB_grad =  pScore1_bg_R_grad +','+ pScore1_bg_G_grad +','+ pScore1_bg_B_grad;
+						pScore1_bg_deg = getValueFromTag(xmlDoc,'pScore1_bg_deg');
+						pScore1_bg_grad = getValueFromTag(xmlDoc,'pScore1_bg_grad');
+						pScore1_font_color = getValueFromTag(xmlDoc,'pScore1_font_color');
+						pScore1_font_auto_color = parseInt(pScore1_bg_R) + parseInt(pScore1_bg_G) + parseInt(pScore1_bg_B);
+
+						stage = getValueFromTag(xmlDoc,'stage');
+						stage_typing = getValueFromTag(xmlDoc,'stage_typing');
+						stage_bg_R = getValueFromTag(xmlDoc,'stage_bg_R');
+						stage_bg_G = getValueFromTag(xmlDoc,'stage_bg_G');
+						stage_bg_B = getValueFromTag(xmlDoc,'stage_bg_B');
+						stage_bg_R_grad = getValueFromTag(xmlDoc,'stage_bg_R_grad');
+						stage_bg_G_grad = getValueFromTag(xmlDoc,'stage_bg_G_grad');
+						stage_bg_B_grad = getValueFromTag(xmlDoc,'stage_bg_B_grad');
+						stage_bg_RGB = stage_bg_R +','+ stage_bg_G +','+ stage_bg_B;
+						stage_bg_RGB_grad =  stage_bg_R_grad +','+ stage_bg_G_grad +','+ stage_bg_B_grad;
+						stage_bg_deg = getValueFromTag(xmlDoc,'stage_bg_deg');
+						stage_bg_grad = getValueFromTag(xmlDoc,'stage_bg_grad');
+						stage_font_color = getValueFromTag(xmlDoc,'stage_font_color');
+						stage_font_auto_color = parseInt(stage_bg_R) + parseInt(stage_bg_G) + parseInt(stage_bg_B);
+
+						pScore2 = getValueFromTag(xmlDoc,'pScore2');
+						pScore2_bg_R = getValueFromTag(xmlDoc,'pScore2_bg_R');
+						pScore2_bg_G = getValueFromTag(xmlDoc,'pScore2_bg_G');
+						pScore2_bg_B = getValueFromTag(xmlDoc,'pScore2_bg_B');
+						pScore2_bg_R_grad = getValueFromTag(xmlDoc,'pScore2_bg_R_grad');
+						pScore2_bg_G_grad = getValueFromTag(xmlDoc,'pScore2_bg_G_grad');
+						pScore2_bg_B_grad = getValueFromTag(xmlDoc,'pScore2_bg_B_grad');
+						pScore2_bg_RGB = pScore2_bg_R +','+ pScore2_bg_G +','+ pScore2_bg_B;
+						pScore2_bg_RGB_grad =  pScore2_bg_R_grad +','+ pScore2_bg_G_grad +','+ pScore2_bg_B_grad;
+						pScore2_bg_deg = getValueFromTag(xmlDoc,'pScore2_bg_deg');
+						pScore2_bg_grad = getValueFromTag(xmlDoc,'pScore2_bg_grad');
+						pScore2_font_color = getValueFromTag(xmlDoc,'pScore2_font_color');
+						pScore2_font_auto_color = parseInt(pScore2_bg_R) + parseInt(pScore2_bg_G) + parseInt(pScore2_bg_B);
+
+						pName2 = getValueFromTag(xmlDoc,'pName2');
+						pSponsor2 = getValueFromTag(xmlDoc,'pSponsor2');
+						pName2_bg_R = getValueFromTag(xmlDoc,'pName2_bg_R');
+						pName2_bg_G = getValueFromTag(xmlDoc,'pName2_bg_G');
+						pName2_bg_B = getValueFromTag(xmlDoc,'pName2_bg_B');
+						pName2_sponsor_R = getValueFromTag(xmlDoc,'pName2_sponsor_R');
+						pName2_sponsor_G = getValueFromTag(xmlDoc,'pName2_sponsor_G');
+						pName2_sponsor_B = getValueFromTag(xmlDoc,'pName2_sponsor_B');
+						pName2_sponsor_RGB = pName2_sponsor_R +','+ pName2_sponsor_G +','+ pName2_sponsor_B;
+						pName2_bg_R_grad = getValueFromTag(xmlDoc,'pName2_bg_R_grad');
+						pName2_bg_G_grad = getValueFromTag(xmlDoc,'pName2_bg_G_grad');
+						pName2_bg_B_grad = getValueFromTag(xmlDoc,'pName2_bg_B_grad');
+						pName2_bg_RGB = pName2_bg_R +','+ pName2_bg_G +','+ pName2_bg_B;
+						pName2_bg_RGB_grad =  pName2_bg_R_grad +','+ pName2_bg_G_grad +','+ pName2_bg_B_grad;
+						pName2_bg_deg = getValueFromTag(xmlDoc,'pName2_bg_deg');
+						pName2_bg_grad = getValueFromTag(xmlDoc,'pName2_bg_grad');
+						pName2_font_color = getValueFromTag(xmlDoc,'pName2_font_color');
+						pName2_font_auto_color = parseInt(pName2_bg_R) + parseInt(pName2_bg_G) + parseInt(pName2_bg_B);
+
+						gg = getValueFromTag(xmlDoc,'gg');
+
+						timestampOld = timestamp;
+						timestamp = getValueFromTag(xmlDoc,'timestamp');
+
+				}
+			}
+
+			function updateBoard() {
+
+
+
+
+
+				if ( $('#pName1').html() !=  ('<span style="color:rgb('+pName1_sponsor_RGB+');">'+pSponsor1+'</span>' +' '+ pName1) ) {
+					animating = true;
+					$('#pName1').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0.5,
+						  duration: 0.3,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+
+
+							if ( pName1_font_color == 'auto'){
+								if ( pName1_font_auto_color < 382.5 ){
+									pName1_font_color = 'white'
+								} else if ( pName1_font_auto_color > 382.5 )
+									pName1_font_color = 'black'
+							}
+
+
+							$('#pName1').html('<span style="color:rgb('+pName1_sponsor_RGB+');">'+pSponsor1+'</span>' +' '+ pName1)
+							.css({
+								'color' : ' '+pName1_font_color+' '
+							});
+
+						}
+					});
+
+					$('#pName1').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 1,
+						  duration: 0.2,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+
+				if ($('#pName2').html() != '<span style="color:rgb('+pName2_sponsor_RGB+');">'+pSponsor2+'</span>' +' '+ pName2 ) {
+					animating = true;
+					$('#pName2').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0.5,
+						  duration: 0.3,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+
+							if ( pName2_font_color == 'auto'){
+							  if ( pName2_font_auto_color < 382.5 ){
+							    pName2_font_color = 'white'
+							  } else if ( pName2_font_auto_color > 382.5 )
+							    pName2_font_color = 'black'
+							}
+							$('#pName2').html('<span style="color:rgb('+pName2_sponsor_RGB+');">'+pSponsor2+'</span>' +' '+ pName2)
+							.css({
+							  'color' : ' '+pName2_font_color+' '
+							});
+
+						}
+					});
+
+					$('#pName2').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 1,
+						  duration: 0.3,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+
+
+
+
+
+
+				if ($('#pScore1').html() != pScore1) {
+				  animating = true;
+				  $('#pScore1').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 0,
+				      time: .5,
+				      duration: 0.3,
+				      effect: 'easeIn'
+				    },
+				    onStop: function(){
+
+							if ( pScore1_font_color == 'auto'){
+							  if ( pScore1_font_auto_color < 382.5 ){
+							    pScore1_font_color = 'white'
+							  } else if ( pScore1_font_auto_color > 382.5 )
+							    pScore1_font_color = 'black'
+							}
+							$('#pScore1').html(pScore1)
+							.css({
+							  'color' : ' '+pScore1_font_color+' '
+							});
+
+				    }
+				  });
+
+				  $('#pScore1').tween({
+				    opacity: {
+				      start: 0,
+				      stop: 100,
+				      time: 1,
+				      duration: 0.2,
+				      effect: 'easeOut'
+				    },
+				    onStop: function(){
+				      animating = false;
+				    }
+				  });
+				}
+
+				if ($('#stage').html() != stage) {
+				  animating = true;
+				  $('#stage').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 0,
+				      time: .5,
+				      duration: 0.3,
+				      effect: 'easeIn'
+				    },
+				    onStop: function(){
+
+				      if ( stage_font_color == 'auto'){
+				        if ( stage_font_auto_color < 382.5 ){
+				          stage_font_color = 'white'
+				        } else if ( stage_font_auto_color > 382.5 )
+				          stage_font_color = 'black'
+				      }
+
+				      $('#stage').html(stage)
+				      .css({
+				        'color' : ' '+stage_font_color+' '
+				      });
+
+				    }
+				  });
+
+				  $('#stage').tween({
+				    opacity: {
+				      start: 0,
+				      stop: 100,
+				      time: 1,
+				      duration: 0.2,
+				      effect: 'easeOut'
+				    },
+				    onStop: function(){
+				      animating = false;
+				    }
+				  });
+				}
+
+				if ($('#stage_typing').html() != stage_typing != stage) {
+				  animating = true;
+				  $('#stage_typing').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 0,
+				      time: .5,
+				      duration: 0.3,
+				      effect: 'easeIn'
+				    },
+				    onStop: function(){
+
+				      if ( stage_font_color == 'auto'){
+				        if ( stage_font_auto_color < 382.5 ){
+				          stage_font_color = 'white'
+				        } else if ( stage_font_auto_color > 382.5 )
+				          stage_font_color = 'black'
+				      }
+
+							if (stage != '') {
+								stage_typing = ''
+							}
+				      $('#stage_typing').html(stage_typing)
+				      .css({
+				        'color' : ' '+stage_font_color+' '
+				      });
+
+				    }
+				  });
+
+				  $('#stage_typing').tween({
+				    opacity: {
+				      start: 0,
+				      stop: 100,
+				      time: 1,
+				      duration: 0.2,
+				      effect: 'easeOut'
+				    },
+				    onStop: function(){
+				      animating = false;
+				    }
+				  });
+				}
+
+
+				if ($('#pScore2').html() != pScore2) {
+				  animating = true;
+				  $('#pScore2').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 0,
+				      time: .5,
+				      duration: 0.3,
+				      effect: 'easeIn'
+				    },
+				    onStop: function(){
+
+							if ( pScore2_font_color == 'auto'){
+						  	if ( pScore2_font_auto_color < 382.5 ){
+						    	pScore2_font_color = 'white'
+						  	} else if ( pScore2_font_auto_color > 382.5 )
+						    	pScore2_font_color = 'black'
+								}
+								$('#pScore2').html(pScore2)
+								.css({
+						  	'color' : ' '+pScore2_font_color+' '
+							});
+
+				    }
+				  });
+
+				  $('#pScore2').tween({
+				    opacity: {
+				      start: 0,
+				      stop: 100,
+				      time: 1,
+				      duration: 0.2,
+				      effect: 'easeOut'
+				    },
+				    onStop: function(){
+				      animating = false;
+				    }
+				  });
+				}
+
+
+
+
+				if ($('#pName1_bg').html() != pName1_bg_deg != pName1_bg_RGB != pName1_bg_RGB_grad  != pName1_bg_grad ) {
+				  animating = true;
+				  $('#pName1_bg').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 100,
+				      time: 0.5,
+				      duration: 0.3,
+				      effect: 'easeIn'
+				    },
+				    onStop: function(){
+							if ( pName1_bg_grad == 'on' ) {
+								$("#pName1_bg").css({
+					        'background':'linear-gradient('+pName1_bg_deg+'deg,rgb('+pName1_bg_RGB+'),rgb('+pName1_bg_RGB_grad+'))',
+									'clip-path':'polygon(0px 0px , 441px 0px , 464px 46px , 23px 46px )'
+					      }).keyframes({
+									'0%':{'width':'464'},
+									'100%':{'width':'464'}
+								},{
+									'duration':'1000',
+									'easing':'cubic-bezier(.25,1,0,1)'
+								});
+							} else if ( pName1_bg_grad == 'off' ) {
+								$("#pName1_bg").css({
+					        'background':'linear-gradient('+pName1_bg_deg+'deg,rgb('+pName1_bg_RGB+'),rgb('+pName1_bg_RGB+'))',
+									'clip-path':'polygon(0px 0px , 441px 0px , 464px 46px , 23px 46px )'
+					      }).keyframes({
+									'0%':{'width':'464'},
+									'100%':{'width':'464px'}
+								},{
+									'duration':'1000',
+									'easing':'cubic-bezier(.25,1,0,1)'
+								});
+							}
+						}
+				  });
+
+				  $('#pName1_bg').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 100,
+				      time: 1,
+				      duration: 0.2,
+				      effect: 'easeOut'
+				    },
+				    onStop: function(){
+				      animating = false;
+				    }
+				  });
+				}
+
+
+
+				if ($('#pScore1_bg').html() != pScore1_bg_deg != pScore1_bg_RGB != pScore1_bg_RGB_grad  != pScore1_bg_grad ) {
+				  animating = true;
+				  $('#pScore1_bg').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 100,
+				      time: 0.5,
+				      duration: 0.3,
+				      effect: 'easeIn'
+				    },
+				    onStop: function(){
+				      if ( pScore1_bg_grad == 'on' ) {
+				        $("#pScore1_bg").css({
+				          'background':'linear-gradient('+pScore1_bg_deg+'deg,rgb('+pScore1_bg_RGB+'),rgb('+pScore1_bg_RGB_grad+'))',
+				          'clip-path':'polygon(0px 29px , 29px 86px , 86px 57px , 57px 0px )'
+				        });
+				      } else if ( pScore1_bg_grad == 'off' ) {
+				        $("#pScore1_bg").css({
+				          'background':'linear-gradient('+pScore1_bg_deg+'deg,rgb('+pScore1_bg_RGB+'),rgb('+pScore1_bg_RGB+'))',
+				          'clip-path':'polygon(0px 29px , 29px 86px , 86px 57px , 57px 0px )'
+				        });
+				      }
+				    }
+				  });
+
+				  $('#pScore1_bg').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 100,
+				      time: 1,
+				      duration: 0.2,
+				      effect: 'easeOut'
+				    },
+				    onStop: function(){
+				      animating = false;
+				    }
+				  });
+				}
+
+
+				if ($('#stage_bg').html() != stage_bg_deg != stage_bg_RGB != stage_bg_RGB_grad  != stage_bg_grad ) {
+				  animating = true;
+				  $('#stage_bg').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 100,
+				      time: 0.5,
+				      duration: 0.3,
+				      effect: 'easeIn'
+				    },
+				    onStop: function(){
+				      if ( stage_bg_grad == 'on' ) {
+				        $("#stage_bg").css({
+				          'background':'linear-gradient('+stage_bg_deg+'deg,rgb('+stage_bg_RGB+'),rgb('+stage_bg_RGB_grad+'))',
+				          'clip-path':'polygon(0px 0px , 400px 0px , 382px 36px , 18px 36px )'
+				        });
+				      } else if ( stage_bg_grad == 'off' ) {
+				        $("#stage_bg").css({
+				          'background':'linear-gradient('+stage_bg_deg+'deg,rgb('+stage_bg_RGB+'),rgb('+stage_bg_RGB+'))',
+				          'clip-path':'polygon(0px 0px , 400px 0px , 382px 36px , 18px 36px )'
+				        });
+				      }
+				    }
+				  });
+				  $('#stage_bg').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 100,
+				      time: 1,
+				      duration: 0.2,
+				      effect: 'easeOut'
+				    },
+				    onStop: function(){
+				      animating = false;
+				    }
+				  });
+				}
+
+
+
+				if ($('#pScore2_bg').html() != pScore2_bg_deg != pScore2_bg_RGB != pScore2_bg_RGB_grad  != pScore2_bg_grad ) {
+				  animating = true;
+				  $('#pScore2_bg').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 100,
+				      time: 0.5,
+				      duration: 0.3,
+				      effect: 'easeIn'
+				    },
+				    onStop: function(){
+				      if ( pScore2_bg_grad == 'on' ) {
+				        $("#pScore2_bg").css({
+				          'background':'linear-gradient('+pScore2_bg_deg+'deg,rgb('+pScore2_bg_RGB+'),rgb('+pScore2_bg_RGB_grad+'))',
+				          'clip-path':'polygon(29px 0px , 86px 29px , 57px 86px , 0px 57px )'
+				        });
+				      } else if ( pScore2_bg_grad == 'off' ) {
+				        $("#pScore2_bg").css({
+				          'background':'linear-gradient('+pScore2_bg_deg+'deg,rgb('+pScore2_bg_RGB+'),rgb('+pScore2_bg_RGB+'))',
+				          'clip-path':'polygon(29px 0px , 86px 29px , 57px 86px , 0px 57px )'
+				        });
+				      }
+				    }
+				  });
+				  $('#pScore2_bg').tween({
+				    opacity: {
+				      start: 100,
+				      stop: 100,
+				      time: 1,
+				      duration: 0.2,
+				      effect: 'easeOut'
+				    },
+				    onStop: function(){
+				      animating = false;
+				    }
+				  });
+				}
+
+
+
+				if ($('#pName2_bg').html() != pName2_bg_deg != pName2_bg_RGB != pName2_bg_RGB_grad  != pName2_bg_grad ) {
+					animating = true;
+					$('#pName2_bg').tween({
+						opacity: {
+							start: 100,
+							stop: 100,
+							time: 0.5,
+							duration: 0.3,
+							effect: 'easeIn'
+						},
+						onStop: function(){
+							if ( pName2_bg_grad == 'on' ) {
+								$("#pName2_bg").css({
+									'background':'linear-gradient('+pName2_bg_deg+'deg,rgb('+pName2_bg_RGB+'),rgb('+pName2_bg_RGB_grad+'))',
+									'clip-path':'polygon(23px 0px , 464px 0px , 441px 46px , 0px 46px )'
+								});
+							} else if ( pName2_bg_grad == 'off' ) {
+								$("#pName2_bg").css({
+									'background':'linear-gradient('+pName2_bg_deg+'deg,rgb('+pName2_bg_RGB+'),rgb('+pName2_bg_RGB+'))',
+									'clip-path':'polygon(23px 0px , 464px 0px , 441px 46px , 0px 46px )'
+								});
+							}
+						}
+					});
+					$('#pName2_bg').tween({
+						opacity: {
+							start: 100,
+							stop: 100,
+							time: 1,
+							duration: 0.2,
+							effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+
+
+				$.play();
+
+				doUpdate = false;
+			}
+
+			function getValueFromTag (xmlDoc,tag) {
+				if (xmlDoc.getElementsByTagName(tag).length != 0 ) {
+					if (xmlDoc.getElementsByTagName(tag)[0].childNodes.length == 0) {
+							return '';
+						} else {
+							return xmlDoc.getElementsByTagName(tag)[0].childNodes[0].nodeValue;
+					}
+				} else {
+					return '';
+				}
+			}
+
+			function getDataFromSmashgg () {
+				
+			}
+
+
+
+	</script>
+</head>
+<body onLoad="init()">
+
+	<div id="board"></div>
+
+	<div id="pName1_bg"></div>
+	<div id="pName1"></div>
+
+	<div id="pScore1_bg"></div>
+	<div id="pScore1"></div>
+
+	<div id="stage_bg"></div>
+	<div id="stage"></div>
+	<div id="stage_typing"></div>
+
+	<div id="pScore2_bg"></div>
+	<div id="pScore2"></div>
+
+	<div id="pName2_bg"></div>
+	<div id="pName2"></div>
+
+
+
+
+</body>
+</html>

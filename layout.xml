@@ -1,0 +1,572 @@
+﻿<!DOCTYPE StreamControlLayout>
+<layout width="425" height="265" tabbed="1">
+	<toolBar>
+
+  </toolBar>
+<tab name="スコアボード">
+
+
+ <lineEdit id="pSponsor1" x="10" y="100" width="140" height="20" dataSet="sponsors.csv" >Sponsor</lineEdit>
+ <lineEdit id="pName1" x="10" y="130" width="140" height="20" dataSet="players.csv" >PlayerName</lineEdit>
+ <spinBox  id="pScore1" x="156" y="100" width="35" height="54" maximum="99" />
+
+ <button type="swap" x="197" y="100" width="20" height="52" tooltip="Swap info" id="swap1" swapSet1="pName1,pScore1,pSponsor1" swapSet2="pName2,pScore2,pSponsor2">⇔</button>
+ <button type="reset" x="156" y="158" width="108" height="23" tooltip="Clear Info" id="reset1" reset="pScore1,pScore2">▲　Clear　▲</button>
+
+ <lineEdit id="pSponsor2" x="270" y="100" width="140" height="20" dataSet="sponsors.csv" >Sponsor</lineEdit>
+ <lineEdit id="pName2" x="270" y="130" width="140" height="20" dataSet="players.csv" >PlayerName</lineEdit>
+ <spinBox  id="pScore2" x="224" y="100" width="40" height="54" maximum="99" />
+
+
+
+<label x="10" y="10" width="80" height="13">TOP</label>
+<label x="48" y="10" width="420" height="13">256　196</label>
+<label x="100" y="10" width="420" height="13">128   96   64   48   32   24   16   12   8   QF   SF   F   GF</label>
+<label x="10" y="30" width="80" height="13">勝者側</label>
+<label x="10" y="50" width="80" height="13">敗者側</label>
+
+<radioGroup id="stage">
+	<radioButton x="51"   y="27" width="80" height="20" value="TOP256 WINNERS" ></radioButton>
+	<radioButton x="77"   y="27" width="80" height="20" value="TOP196 WINNERS" ></radioButton>
+	<radioButton x="103"  y="27" width="80" height="20" value="TOP128 WINNERS" ></radioButton>
+	<radioButton x="129"  y="27" width="80" height="20" value="TOP96 WINNERS" ></radioButton>
+	<radioButton x="153"  y="27" width="80" height="20" value="TOP64 WINNERS" ></radioButton>
+	<radioButton x="177"  y="27" width="80" height="20" value="TOP48 WINNERS" ></radioButton>
+	<radioButton x="201"  y="27" width="80" height="20" value="TOP32 WINNERS" ></radioButton>
+	<radioButton x="225"  y="27" width="80" height="20" value="TOP24 WINNERS" ></radioButton>
+	<radioButton x="250"  y="27" width="80" height="20" value="TOP16 WINNERS" ></radioButton>
+	<radioButton x="274"  y="27" width="80" height="20" value="TOP12 WINNERS" ></radioButton>
+	<radioButton x="295"  y="27" width="80" height="20" value="TOP8 WINNERS" ></radioButton>
+	<radioButton x="316"  y="27" width="80" height="20" value="WINNERS QUARTERS" ></radioButton>
+	<radioButton x="342"  y="27" width="80" height="20" value="WINNERS SEMIS" ></radioButton>
+	<radioButton x="365"  y="27" width="80" height="20" value="WINNERS FINALS" ></radioButton>
+	<radioButton x="388"  y="27" width="80" height="20" value="GRAND FINALS" ></radioButton>
+
+	<radioButton x="51"   y="47" width="80" height="20" value="TOP256 LOSERS" ></radioButton>
+	<radioButton x="77"   y="47" width="80" height="20" value="TOP196 LOSERS" ></radioButton>
+	<radioButton x="103"  y="47" width="80" height="20" value="TOP128 LOSERS" ></radioButton>
+	<radioButton x="129"  y="47" width="80" height="20" value="TOP96 LOSERS" ></radioButton>
+	<radioButton x="153"  y="47" width="80" height="20" value="TOP64 LOSERS" ></radioButton>
+	<radioButton x="177"  y="47" width="80" height="20" value="TOP48 LOSERS" ></radioButton>
+	<radioButton x="201"  y="47" width="80" height="20" value="TOP32 LOSERS" ></radioButton>
+	<radioButton x="225"  y="47" width="80" height="20" value="TOP24 LOSERS" ></radioButton>
+	<radioButton x="250"  y="47" width="80" height="20" value="TOP16 LOSERS" ></radioButton>
+	<radioButton x="274"  y="47" width="80" height="20" value="TOP12 LOSERS" ></radioButton>
+	<radioButton x="295"  y="47" width="80" height="20" value="TOP8 LOSERS" ></radioButton>
+	<radioButton x="316"  y="47" width="80" height="20" value="LOSERS QUARTERS" ></radioButton>
+	<radioButton x="342"  y="47" width="80" height="20" value="LOSERS SEMIS" ></radioButton>
+	<radioButton x="365"  y="47" width="80" height="20" value="LOSERS FINALS" ></radioButton>
+	<radioButton x="388"  y="47" width="80" height="20" value="GRAND FINALS RESET" ></radioButton>
+	<radioButton x="103"  y="72" width="80" height="20" value="" ></radioButton>
+</radioGroup>
+
+<label x="300" y="75" width="85" height="13">ggからインポート</label>
+<checkBox id="gg" x="380"  y="72" width="80" height="20" value="1" ></checkBox>
+
+<label x="10" y="75" width="85" height="13">Stage/直接入力</label>
+<lineEdit id="stage_typing"   x="129" y="70" width="160" height="20" dataSet="stage.csv" >stage_直接入力 / Interval_下</lineEdit>
+<lineEdit id="intInfo1"       x="10" y="170" width="140" height="20" dataSet="int_up.csv" >Interval_上</lineEdit>
+<lineEdit id="logo_name"       x="270" y="170" width="140" height="20" dataSet="region.csv" >大会ロゴ</lineEdit>
+
+
+
+
+</tab>
+
+<tab name = "色設定" scrollable="1">
+
+		<!-- プレイヤーネーム　1P -->
+
+	<label x="0" y="27" width="20" height="13">┃</label>
+	<label x="0" y="40" width="20" height="13">┃</label>
+	<label x="0" y="53" width="20" height="13">┃</label>
+	<label x="0" y="66" width="20" height="13">┃</label>
+	<label x="0" y="79" width="20" height="13">┃</label>
+	<label x="0" y="92" width="20" height="13">┃</label>
+	<label x="0" y="105" width="20" height="13">┃</label>
+	<label x="0" y="118" width="20" height="13">┃</label>
+	<label x="0" y="131" width="20" height="13">┃</label>
+
+	<label x="10" y="5" width="120" height="13">▼■■■■■■■■▲</label>
+	<label x="14" y="5" width="120" height="13">■■■■ ■■■■■</label>
+
+	<label x="10" y="32" width="20" height="13">R</label>
+	<label x="10" y="52" width="20" height="13">G</label>
+	<label x="10" y="72" width="20" height="13">B</label>
+	<spinBox id="pName1_bg_R" x="20" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="pName1_bg_G" x="20" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="pName1_bg_B" x="20" y="70" width="40" height="18" maximum="255" />
+
+	<radioGroup id="pName1_bg_grad">
+		<radioButton x="72"  y="111" width="45" height="20" value="on" >グラデ</radioButton>
+		<radioButton x="72"  y="126" width="45" height="20" value="off" >単色</radioButton>
+	</radioGroup>
+
+	<radioGroup id="pName1_font_color">
+		<radioButton x="10"  y="94" width="45" height="20" value="white" >白</radioButton>
+		<radioButton x="10"  y="109" width="45" height="20" value="black" >黒</radioButton>
+		<radioButton x="10"  y="124" width="45" height="20" value="auto" >自動</radioButton>
+	</radioGroup>
+
+	<label x="20" y="148" width="20" height="13">R</label>
+	<label x="60" y="148" width="20" height="13">G</label>
+	<label x="100" y="148" width="20" height="13">B</label>
+	<spinBox id="pName1_sponsor_R" x="5" y="160" width="40" height="18" maximum="255" />
+	<spinBox id="pName1_sponsor_G" x="45" y="160" width="40" height="18" maximum="255" />
+	<spinBox id="pName1_sponsor_B" x="85" y="160" width="40" height="18" maximum="255" />
+
+	<label x="60" y="27" width="20" height="13">┃</label>
+	<label x="60" y="40" width="20" height="13">┃</label>
+	<label x="60" y="53" width="20" height="13">┃</label>
+	<label x="60" y="66" width="20" height="13">┃</label>
+	<label x="60" y="79" width="20" height="13">┃</label>
+	<label x="60" y="92" width="20" height="13">┃</label>
+	<label x="60" y="105" width="20" height="13">┃</label>
+	<label x="60" y="118" width="20" height="13">┃</label>
+	<label x="60" y="131" width="20" height="13">┃</label>
+
+
+	<label x="70" y="32" width="20" height="13">R</label>
+	<label x="70" y="52" width="20" height="13">G</label>
+	<label x="70" y="72" width="20" height="13">B</label>
+	<spinBox id="pName1_bg_R_grad" x="80" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="pName1_bg_G_grad" x="80" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="pName1_bg_B_grad" x="80" y="70" width="40" height="18" maximum="255" />
+
+	<label x="68" y="97" width="20" height="13">θ</label>
+	<spinBox id="pName1_bg_deg" x="80" y="95" width="40" height="18" maximum="359" />
+
+	<label x="122" y="27" width="20" height="13">┃</label>
+	<label x="122" y="40" width="20" height="13">┃</label>
+	<label x="122" y="53" width="20" height="13">┃</label>
+	<label x="122" y="66" width="20" height="13">┃</label>
+	<label x="122" y="79" width="20" height="13">┃</label>
+	<label x="122" y="92" width="20" height="13">┃</label>
+	<label x="122" y="105" width="20" height="13">┃</label>
+	<label x="122" y="118" width="20" height="13">┃</label>
+	<label x="122" y="131" width="20" height="13">┃</label>
+
+	<label x="8" y="19" width="20" height="13">━</label>
+	<label x="21" y="19" width="20" height="13">━</label>
+	<label x="34" y="19" width="20" height="13">━</label>
+	<label x="47" y="19" width="20" height="13">━</label>
+	<label x="60" y="19" width="20" height="13">━</label>
+	<label x="73" y="19" width="20" height="13">━</label>
+	<label x="86" y="19" width="20" height="13">━</label>
+	<label x="99" y="19" width="20" height="13">━</label>
+	<label x="112" y="19" width="20" height="13">━</label>
+
+	<label x="8" y="86" width="20" height="13">━</label>
+	<label x="21" y="86" width="20" height="13">━</label>
+	<label x="34" y="86" width="20" height="13">━</label>
+	<label x="47" y="86" width="20" height="13">━</label>
+	<label x="60" y="86" width="20" height="13">━</label>
+	<label x="73" y="86" width="20" height="13">━</label>
+	<label x="86" y="86" width="20" height="13">━</label>
+	<label x="99" y="86" width="20" height="13">━</label>
+	<label x="112" y="86" width="20" height="13">━</label>
+
+	<label x="8" y="140" width="20" height="13">━</label>
+	<label x="21" y="140" width="20" height="13">━</label>
+	<label x="34" y="140" width="20" height="13">━</label>
+	<label x="47" y="140" width="20" height="13">━</label>
+	<label x="60" y="140" width="20" height="13">━</label>
+	<label x="73" y="140" width="20" height="13">━</label>
+	<label x="86" y="140" width="20" height="13">━</label>
+	<label x="99" y="140" width="20" height="13">━</label>
+	<label x="112" y="140" width="20" height="13">━</label>
+
+	<!-- スコア数値　1P -->
+
+	<label x="130" y="27" width="20" height="13">┃</label>
+	<label x="130" y="40" width="20" height="13">┃</label>
+	<label x="130" y="53" width="20" height="13">┃</label>
+	<label x="130" y="66" width="20" height="13">┃</label>
+	<label x="130" y="79" width="20" height="13">┃</label>
+	<label x="130" y="92" width="20" height="13">┃</label>
+	<label x="130" y="105" width="20" height="13">┃</label>
+	<label x="130" y="118" width="20" height="13">┃</label>
+	<label x="130" y="131" width="20" height="13">┃</label>
+
+	<label x="190" y="5" width="150" height="13">◆</label>
+
+	<label x="140" y="32" width="20" height="13">R</label>
+	<label x="140" y="52" width="20" height="13">G</label>
+	<label x="140" y="72" width="20" height="13">B</label>
+	<spinBox id="pScore1_bg_R" x="150" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="pScore1_bg_G" x="150" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="pScore1_bg_B" x="150" y="70" width="40" height="18" maximum="255" />
+
+	<radioGroup id="pScore1_bg_grad">
+	<radioButton x="202"  y="111" width="45" height="20" value="on" >グラデ</radioButton>
+	<radioButton x="202"  y="126" width="45" height="20" value="off" >単色</radioButton>
+	</radioGroup>
+
+	<radioGroup id="pScore1_font_color">
+	<radioButton x="140"  y="94" width="45" height="20" value="white" >白</radioButton>
+	<radioButton x="140"  y="109" width="45" height="20" value="black" >黒</radioButton>
+	<radioButton x="140"  y="124" width="45" height="20" value="auto" >自動</radioButton>
+	</radioGroup>
+
+	<label x="190" y="27" width="20" height="13">┃</label>
+	<label x="190" y="40" width="20" height="13">┃</label>
+	<label x="190" y="53" width="20" height="13">┃</label>
+	<label x="190" y="66" width="20" height="13">┃</label>
+	<label x="190" y="79" width="20" height="13">┃</label>
+	<label x="190" y="92" width="20" height="13">┃</label>
+	<label x="190" y="105" width="20" height="13">┃</label>
+	<label x="190" y="118" width="20" height="13">┃</label>
+	<label x="190" y="131" width="20" height="13">┃</label>
+
+
+	<label x="200" y="32" width="20" height="13">R</label>
+	<label x="200" y="52" width="20" height="13">G</label>
+	<label x="200" y="72" width="20" height="13">B</label>
+	<spinBox id="pScore1_bg_R_grad" x="210" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="pScore1_bg_G_grad" x="210" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="pScore1_bg_B_grad" x="210" y="70" width="40" height="18" maximum="255" />
+
+	<label x="198" y="97" width="20" height="13">θ</label>
+	<spinBox id="pScore1_bg_deg" x="210" y="95" width="40" height="18" maximum="359" />
+
+	<label x="252" y="27" width="20" height="13">┃</label>
+	<label x="252" y="40" width="20" height="13">┃</label>
+	<label x="252" y="53" width="20" height="13">┃</label>
+	<label x="252" y="66" width="20" height="13">┃</label>
+	<label x="252" y="79" width="20" height="13">┃</label>
+	<label x="252" y="92" width="20" height="13">┃</label>
+	<label x="252" y="105" width="20" height="13">┃</label>
+	<label x="252" y="118" width="20" height="13">┃</label>
+	<label x="252" y="131" width="20" height="13">┃</label>
+
+	<label x="138" y="19" width="20" height="13">━</label>
+	<label x="151" y="19" width="20" height="13">━</label>
+	<label x="164" y="19" width="20" height="13">━</label>
+	<label x="177" y="19" width="20" height="13">━</label>
+	<label x="190" y="19" width="20" height="13">━</label>
+	<label x="203" y="19" width="20" height="13">━</label>
+	<label x="216" y="19" width="20" height="13">━</label>
+	<label x="229" y="19" width="20" height="13">━</label>
+	<label x="242" y="19" width="20" height="13">━</label>
+
+	<label x="138" y="86" width="20" height="13">━</label>
+	<label x="151" y="86" width="20" height="13">━</label>
+	<label x="164" y="86" width="20" height="13">━</label>
+	<label x="177" y="86" width="20" height="13">━</label>
+	<label x="190" y="86" width="20" height="13">━</label>
+	<label x="203" y="86" width="20" height="13">━</label>
+	<label x="216" y="86" width="20" height="13">━</label>
+	<label x="229" y="86" width="20" height="13">━</label>
+	<label x="242" y="86" width="20" height="13">━</label>
+
+	<label x="138" y="140" width="20" height="13">━</label>
+	<label x="151" y="140" width="20" height="13">━</label>
+	<label x="164" y="140" width="20" height="13">━</label>
+	<label x="177" y="140" width="20" height="13">━</label>
+	<label x="190" y="140" width="20" height="13">━</label>
+	<label x="203" y="140" width="20" height="13">━</label>
+	<label x="216" y="140" width="20" height="13">━</label>
+	<label x="229" y="140" width="20" height="13">━</label>
+	<label x="242" y="140" width="20" height="13">━</label>
+
+
+
+
+
+
+	<!-- ステージ -->
+
+	<label x="290" y="5" width="150" height="13">▼■■■■▼</label>
+	<label x="295" y="5" width="150" height="13">■■■■■</label>
+	<label x="297" y="5" width="150" height="13">■■■■■</label>
+
+	<label x="260" y="27" width="20" height="13">┃</label>
+	<label x="260" y="40" width="20" height="13">┃</label>
+	<label x="260" y="53" width="20" height="13">┃</label>
+	<label x="260" y="66" width="20" height="13">┃</label>
+	<label x="260" y="79" width="20" height="13">┃</label>
+	<label x="260" y="92" width="20" height="13">┃</label>
+	<label x="260" y="105" width="20" height="13">┃</label>
+	<label x="260" y="118" width="20" height="13">┃</label>
+	<label x="260" y="131" width="20" height="13">┃</label>
+
+	<label x="270" y="32" width="20" height="13">R</label>
+	<label x="270" y="52" width="20" height="13">G</label>
+	<label x="270" y="72" width="20" height="13">B</label>
+	<spinBox id="stage_bg_R" x="280" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="stage_bg_G" x="280" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="stage_bg_B" x="280" y="70" width="40" height="18" maximum="255" />
+
+	<radioGroup id="stage_bg_grad">
+	<radioButton x="332"  y="111" width="45" height="20" value="on" >グラデ</radioButton>
+	<radioButton x="332"  y="126" width="45" height="20" value="off" >単色</radioButton>
+	</radioGroup>
+
+	<radioGroup id="stage_font_color">
+	<radioButton x="270"  y="94" width="45" height="20" value="white" >白</radioButton>
+	<radioButton x="270"  y="109" width="45" height="20" value="black" >黒</radioButton>
+	<radioButton x="270"  y="124" width="45" height="20" value="auto" >自動</radioButton>
+	</radioGroup>
+
+	<label x="320" y="27" width="20" height="13">┃</label>
+	<label x="320" y="40" width="20" height="13">┃</label>
+	<label x="320" y="53" width="20" height="13">┃</label>
+	<label x="320" y="66" width="20" height="13">┃</label>
+	<label x="320" y="79" width="20" height="13">┃</label>
+	<label x="320" y="92" width="20" height="13">┃</label>
+	<label x="320" y="105" width="20" height="13">┃</label>
+	<label x="320" y="118" width="20" height="13">┃</label>
+	<label x="320" y="131" width="20" height="13">┃</label>
+
+
+	<label x="330" y="32" width="20" height="13">R</label>
+	<label x="330" y="52" width="20" height="13">G</label>
+	<label x="330" y="72" width="20" height="13">B</label>
+	<spinBox id="stage_bg_R_grad" x="340" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="stage_bg_G_grad" x="340" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="stage_bg_B_grad" x="340" y="70" width="40" height="18" maximum="255" />
+
+	<label x="328" y="97" width="20" height="13">θ</label>
+	<spinBox id="stage_bg_deg" x="340" y="95" width="40" height="18" maximum="359" />
+
+	<label x="382" y="27" width="20" height="13">┃</label>
+	<label x="382" y="40" width="20" height="13">┃</label>
+	<label x="382" y="53" width="20" height="13">┃</label>
+	<label x="382" y="66" width="20" height="13">┃</label>
+	<label x="382" y="79" width="20" height="13">┃</label>
+	<label x="382" y="92" width="20" height="13">┃</label>
+	<label x="382" y="105" width="20" height="13">┃</label>
+	<label x="382" y="118" width="20" height="13">┃</label>
+	<label x="382" y="131" width="20" height="13">┃</label>
+
+	<label x="268" y="19" width="20" height="13">━</label>
+	<label x="281" y="19" width="20" height="13">━</label>
+	<label x="294" y="19" width="20" height="13">━</label>
+	<label x="307" y="19" width="20" height="13">━</label>
+	<label x="320" y="19" width="20" height="13">━</label>
+	<label x="333" y="19" width="20" height="13">━</label>
+	<label x="346" y="19" width="20" height="13">━</label>
+	<label x="359" y="19" width="20" height="13">━</label>
+	<label x="372" y="19" width="20" height="13">━</label>
+
+	<label x="268" y="86" width="20" height="13">━</label>
+	<label x="281" y="86" width="20" height="13">━</label>
+	<label x="294" y="86" width="20" height="13">━</label>
+	<label x="307" y="86" width="20" height="13">━</label>
+	<label x="320" y="86" width="20" height="13">━</label>
+	<label x="333" y="86" width="20" height="13">━</label>
+	<label x="346" y="86" width="20" height="13">━</label>
+	<label x="359" y="86" width="20" height="13">━</label>
+	<label x="372" y="86" width="20" height="13">━</label>
+
+	<label x="268" y="140" width="20" height="13">━</label>
+	<label x="281" y="140" width="20" height="13">━</label>
+	<label x="294" y="140" width="20" height="13">━</label>
+	<label x="307" y="140" width="20" height="13">━</label>
+	<label x="320" y="140" width="20" height="13">━</label>
+	<label x="333" y="140" width="20" height="13">━</label>
+	<label x="346" y="140" width="20" height="13">━</label>
+	<label x="359" y="140" width="20" height="13">━</label>
+	<label x="372" y="140" width="20" height="13">━</label>
+
+	<!-- スコア数値　2P -->
+
+	<label x="450" y="5" width="150" height="13">◆</label>
+
+	<label x="390" y="27" width="20" height="13">┃</label>
+	<label x="390" y="40" width="20" height="13">┃</label>
+	<label x="390" y="53" width="20" height="13">┃</label>
+	<label x="390" y="66" width="20" height="13">┃</label>
+	<label x="390" y="79" width="20" height="13">┃</label>
+	<label x="390" y="92" width="20" height="13">┃</label>
+	<label x="390" y="105" width="20" height="13">┃</label>
+	<label x="390" y="118" width="20" height="13">┃</label>
+	<label x="390" y="131" width="20" height="13">┃</label>
+
+	<label x="400" y="32" width="20" height="13">R</label>
+	<label x="400" y="52" width="20" height="13">G</label>
+	<label x="400" y="72" width="20" height="13">B</label>
+	<spinBox id="pScore2_bg_R" x="410" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="pScore2_bg_G" x="410" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="pScore2_bg_B" x="410" y="70" width="40" height="18" maximum="255" />
+
+	<radioGroup id="pScore2_bg_grad">
+	<radioButton x="462"  y="111" width="45" height="20" value="on" >グラデ</radioButton>
+	<radioButton x="462"  y="126" width="45" height="20" value="off" >単色</radioButton>
+	</radioGroup>
+
+	<radioGroup id="pScore2_font_color">
+	<radioButton x="400"  y="94" width="45" height="20" value="white" >白</radioButton>
+	<radioButton x="400"  y="109" width="45" height="20" value="black" >黒</radioButton>
+	<radioButton x="400"  y="124" width="45" height="20" value="auto" >自動</radioButton>
+	</radioGroup>
+
+	<label x="450" y="27" width="20" height="13">┃</label>
+	<label x="450" y="40" width="20" height="13">┃</label>
+	<label x="450" y="53" width="20" height="13">┃</label>
+	<label x="450" y="66" width="20" height="13">┃</label>
+	<label x="450" y="79" width="20" height="13">┃</label>
+	<label x="450" y="92" width="20" height="13">┃</label>
+	<label x="450" y="105" width="20" height="13">┃</label>
+	<label x="450" y="118" width="20" height="13">┃</label>
+	<label x="450" y="131" width="20" height="13">┃</label>
+
+
+	<label x="460" y="32" width="20" height="13">R</label>
+	<label x="460" y="52" width="20" height="13">G</label>
+	<label x="460" y="72" width="20" height="13">B</label>
+	<spinBox id="pScore2_bg_R_grad" x="470" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="pScore2_bg_G_grad" x="470" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="pScore2_bg_B_grad" x="470" y="70" width="40" height="18" maximum="255" />
+
+	<label x="458" y="97" width="20" height="13">θ</label>
+	<spinBox id="pScore2_bg_deg" x="470" y="95" width="40" height="18" maximum="359" />
+
+	<label x="512" y="27" width="20" height="13">┃</label>
+	<label x="512" y="40" width="20" height="13">┃</label>
+	<label x="512" y="53" width="20" height="13">┃</label>
+	<label x="512" y="66" width="20" height="13">┃</label>
+	<label x="512" y="79" width="20" height="13">┃</label>
+	<label x="512" y="92" width="20" height="13">┃</label>
+	<label x="512" y="105" width="20" height="13">┃</label>
+	<label x="512" y="118" width="20" height="13">┃</label>
+	<label x="512" y="131" width="20" height="13">┃</label>
+
+	<label x="398" y="19" width="20" height="13">━</label>
+	<label x="411" y="19" width="20" height="13">━</label>
+	<label x="424" y="19" width="20" height="13">━</label>
+	<label x="437" y="19" width="20" height="13">━</label>
+	<label x="450" y="19" width="20" height="13">━</label>
+	<label x="463" y="19" width="20" height="13">━</label>
+	<label x="476" y="19" width="20" height="13">━</label>
+	<label x="489" y="19" width="20" height="13">━</label>
+	<label x="502" y="19" width="20" height="13">━</label>
+
+	<label x="398" y="86" width="20" height="13">━</label>
+	<label x="411" y="86" width="20" height="13">━</label>
+	<label x="424" y="86" width="20" height="13">━</label>
+	<label x="437" y="86" width="20" height="13">━</label>
+	<label x="450" y="86" width="20" height="13">━</label>
+	<label x="463" y="86" width="20" height="13">━</label>
+	<label x="476" y="86" width="20" height="13">━</label>
+	<label x="489" y="86" width="20" height="13">━</label>
+	<label x="502" y="86" width="20" height="13">━</label>
+
+	<label x="398" y="140" width="20" height="13">━</label>
+	<label x="411" y="140" width="20" height="13">━</label>
+	<label x="424" y="140" width="20" height="13">━</label>
+	<label x="437" y="140" width="20" height="13">━</label>
+	<label x="450" y="140" width="20" height="13">━</label>
+	<label x="463" y="140" width="20" height="13">━</label>
+	<label x="476" y="140" width="20" height="13">━</label>
+	<label x="489" y="140" width="20" height="13">━</label>
+	<label x="502" y="140" width="20" height="13">━</label>
+
+	<!-- プレイヤーネーム　2P -->
+
+	<label x="525" y="5" width="120" height="13">▲■■■■■■■■▼</label>
+	<label x="529" y="5" width="120" height="13">■■■■ ■■■■■</label>
+
+	<label x="520" y="27" width="20" height="13">┃</label>
+	<label x="520" y="40" width="20" height="13">┃</label>
+	<label x="520" y="53" width="20" height="13">┃</label>
+	<label x="520" y="66" width="20" height="13">┃</label>
+	<label x="520" y="79" width="20" height="13">┃</label>
+	<label x="520" y="92" width="20" height="13">┃</label>
+	<label x="520" y="105" width="20" height="13">┃</label>
+	<label x="520" y="118" width="20" height="13">┃</label>
+	<label x="520" y="131" width="20" height="13">┃</label>
+
+	<label x="530" y="32" width="20" height="13">R</label>
+	<label x="530" y="52" width="20" height="13">G</label>
+	<label x="530" y="72" width="20" height="13">B</label>
+	<spinBox id="pName2_bg_R" x="540" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="pName2_bg_G" x="540" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="pName2_bg_B" x="540" y="70" width="40" height="18" maximum="255" />
+
+	<radioGroup id="pName2_bg_grad">
+	<radioButton x="592"  y="111" width="45" height="20" value="on" >グラデ</radioButton>
+	<radioButton x="592"  y="126" width="45" height="20" value="off" >単色</radioButton>
+	</radioGroup>
+
+	<radioGroup id="pName2_font_color">
+	<radioButton x="530"  y="94" width="45" height="20" value="white" >白</radioButton>
+	<radioButton x="530"  y="109" width="45" height="20" value="black" >黒</radioButton>
+	<radioButton x="530"  y="124" width="45" height="20" value="auto" >自動</radioButton>
+	</radioGroup>
+
+	<label x="540" y="148" width="20" height="13">R</label>
+	<label x="580" y="148" width="20" height="13">G</label>
+	<label x="620" y="148" width="20" height="13">B</label>
+	<spinBox id="pName2_sponsor_R" x="525" y="160" width="40" height="18" maximum="255" />
+	<spinBox id="pName2_sponsor_G" x="565" y="160" width="40" height="18" maximum="255" />
+	<spinBox id="pName2_sponsor_B" x="605" y="160" width="40" height="18" maximum="255" />
+
+	<label x="580" y="27" width="20" height="13">┃</label>
+	<label x="580" y="40" width="20" height="13">┃</label>
+	<label x="580" y="53" width="20" height="13">┃</label>
+	<label x="580" y="66" width="20" height="13">┃</label>
+	<label x="580" y="79" width="20" height="13">┃</label>
+	<label x="580" y="92" width="20" height="13">┃</label>
+	<label x="580" y="105" width="20" height="13">┃</label>
+	<label x="580" y="118" width="20" height="13">┃</label>
+	<label x="580" y="131" width="20" height="13">┃</label>
+
+
+	<label x="590" y="32" width="20" height="13">R</label>
+	<label x="590" y="52" width="20" height="13">G</label>
+	<label x="590" y="72" width="20" height="13">B</label>
+	<spinBox id="pName2_bg_R_grad" x="600" y="30" width="40" height="18" maximum="255" />
+	<spinBox id="pName2_bg_G_grad" x="600" y="50" width="40" height="18" maximum="255" />
+	<spinBox id="pName2_bg_B_grad" x="600" y="70" width="40" height="18" maximum="255" />
+
+	<label x="588" y="97" width="20" height="13">θ</label>
+	<spinBox id="pName2_bg_deg" x="600" y="95" width="40" height="18" maximum="359" />
+
+	<label x="642" y="27" width="20" height="13">┃</label>
+	<label x="642" y="40" width="20" height="13">┃</label>
+	<label x="642" y="53" width="20" height="13">┃</label>
+	<label x="642" y="66" width="20" height="13">┃</label>
+	<label x="642" y="79" width="20" height="13">┃</label>
+	<label x="642" y="92" width="20" height="13">┃</label>
+	<label x="642" y="105" width="20" height="13">┃</label>
+	<label x="642" y="118" width="20" height="13">┃</label>
+	<label x="642" y="131" width="20" height="13">┃</label>
+
+	<label x="528" y="19" width="20" height="13">━</label>
+	<label x="541" y="19" width="20" height="13">━</label>
+	<label x="554" y="19" width="20" height="13">━</label>
+	<label x="567" y="19" width="20" height="13">━</label>
+	<label x="580" y="19" width="20" height="13">━</label>
+	<label x="593" y="19" width="20" height="13">━</label>
+	<label x="606" y="19" width="20" height="13">━</label>
+	<label x="619" y="19" width="20" height="13">━</label>
+	<label x="632" y="19" width="20" height="13">━</label>
+
+	<label x="528" y="86" width="20" height="13">━</label>
+	<label x="541" y="86" width="20" height="13">━</label>
+	<label x="554" y="86" width="20" height="13">━</label>
+	<label x="567" y="86" width="20" height="13">━</label>
+	<label x="580" y="86" width="20" height="13">━</label>
+	<label x="593" y="86" width="20" height="13">━</label>
+	<label x="606" y="86" width="20" height="13">━</label>
+	<label x="619" y="86" width="20" height="13">━</label>
+	<label x="632" y="86" width="20" height="13">━</label>
+
+	<label x="528" y="140" width="20" height="13">━</label>
+	<label x="541" y="140" width="20" height="13">━</label>
+	<label x="554" y="140" width="20" height="13">━</label>
+	<label x="567" y="140" width="20" height="13">━</label>
+	<label x="580" y="140" width="20" height="13">━</label>
+	<label x="593" y="140" width="20" height="13">━</label>
+	<label x="606" y="140" width="20" height="13">━</label>
+	<label x="619" y="140" width="20" height="13">━</label>
+	<label x="632" y="140" width="20" height="13">━</label>
+
+
+
+</tab>
+
+
+
+</layout>

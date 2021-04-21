@@ -1,0 +1,199 @@
+@font-face{
+	font-family: 'corpoB';
+	src:url('../Fonts/Corporate-logo_bold.ttf');
+}
+
+@font-face{
+	font-family: 'corpoM';
+	src:url('../Fonts/Corporate-logo_medium.ttf');
+}
+
+body {
+	margin:0px;
+	background-color: rgba(0, 0, 0, 0);
+	font-family: 'corpoM','corpoB',"logotypejp_mp_b","コーポレート・ロゴＢ","Noto Sans CJK JP Heavy","OmePlus P Gothic medium",/*"MLRPG",*/ "07鉄瓶ゴシック","なごみ極細ゴシック 特細","JFドットM+H12","ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Arial,"メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	color:#FFFFFF;
+	word-break: break-all;
+}
+
+
+#board {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:1920px;
+	height:1080px;
+	background-image:url('../images/1.bmp');
+}
+
+
+
+#pName1_bg {
+	position:absolute;
+	left:253px;
+	top:30px;
+	width:464px;
+	height:46px;
+}
+#pName1 {
+	position:absolute;
+	left:276px;
+	top:33px;
+	width: 100%;
+	max-width: 418px;
+	padding:0px;
+	font-size:34px;
+	font-weight: 700;
+	text-align: center;
+
+	letter-spacing: -2px;
+
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+#pScore1_bg {
+	position:absolute;
+	left:698px;
+	top:0px;
+	width:86px;
+	height:86px;
+}
+#pScore1 {
+	position:absolute;
+	left:710px;
+	top:14px;
+	width:60px;
+	font-size:48px;
+
+	font-weight: 700;
+	text-align:center;
+	letter-spacing: -2px;
+}
+
+
+
+#stage_bg {
+	position:absolute;
+	left:760px;
+	top:0px;
+	width:400px;
+	height:36px;
+}
+#stage {
+	position:absolute;
+	left: 777px;
+	top:0px;
+	width: 100%;
+	width: 366px;
+	padding:0px;
+	font-size:32px;
+	font-weight: 700;
+	text-align: center;
+
+	letter-spacing: -1.5px;
+
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#stage_typing {
+	position:absolute;
+	left: 777px;
+	top:0px;
+	width: 100%;
+	width: 366px;
+	padding:0px;
+	font-size:32px;
+	font-weight: 700;
+	text-align: center;
+
+	letter-spacing: -1.5px;
+
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+#pScore2_bg {
+	position:absolute;
+	left:1136px;
+	top:0px;
+	width:86px;
+	height:86px;
+}
+#pScore2 {
+	position:absolute;
+	left:1148px;
+	top:14px;
+	width:60px;
+	font-size:48px;
+
+	font-weight: 700;
+	text-align:center;
+	letter-spacing: -2px;
+}
+
+
+#pName2_bg {
+	position:absolute;
+	left:1203px;
+	top:30px;
+	width:464px;
+	height:46px;
+}
+#pName2 {
+	position:absolute;
+	left:1226px;
+	top:33px;
+	width: 100%;
+	max-width: 418px;
+	padding:0px;
+	font-size:34px;
+	font-weight: 700;
+	text-align: center;
+
+	letter-spacing: -2px;
+
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+}
+
+
+
+
+
+
+
+
+
+@keyframes marquee {
+  from 		{ transform:translate(0);     }
+  to  {  transform:translate(-100%); }
+}
+@-moz-keyframes anime1 {
+	0% {width: 0px; height: 28px; background-color: white;}
+	100% {width: 231px; height: 28px; background-color: black;}
+}
+
+@-webkit-keyframes anime1 {
+	0% {width: 0px; height: 28px; background-color: white;}
+	100% {width: 231px; height: 28px; background-color: black;}
+}
+
+@-o-keyframes anime1 {
+	0% {width: 0px; height: 28px; background-color: white;}
+	100% {width: 231px; height: 28px; background-color: black;}
+}
+
+@-ms-keyframes anime1 {
+	0% {width: 0px; height: 28px; background-color: white;}
+	100% {width: 231px; height: 28px; background-color: black;}
+}
