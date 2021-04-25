@@ -1,4 +1,4 @@
-﻿<!DOCTYPE StreamControlLayout>
+<!DOCTYPE StreamControlLayout>
 <layout width="425" height="265" tabbed="1">
 	<toolBar>
 
@@ -66,7 +66,7 @@
 <label x="10" y="75" width="85" height="13">Stage/直接入力</label>
 <lineEdit id="stage_typing"   x="129" y="70" width="160" height="20" dataSet="stage.csv" >stage_直接入力 / Interval_下</lineEdit>
 <lineEdit id="intInfo1"       x="10" y="170" width="140" height="20" dataSet="int_up.csv" >Interval_上</lineEdit>
-<lineEdit id="logo_name"       x="270" y="170" width="140" height="20" dataSet="region.csv" >大会ロゴ</lineEdit>
+<lineEdit id="logo_name"      x="270" y="170" width="140" height="20" dataSet="region.csv" >大会ロゴ</lineEdit>
 
 
 
@@ -565,6 +565,31 @@
 
 
 
+</tab>
+
+
+
+
+
+<tab name="smash.gg" scrollable="1">
+
+	<label x="0" y="2" width="50" height="20">URL</label>
+	<lineEdit id="url" x="80" y="0" width="330" height="20" dataSet="ggurl.csv">url</lineEdit>
+
+	<label x="0" y="27" width="80" height="20">Channel Name</label>
+	<lineEdit id="channelName" x="80" y="25" width="330" height="20" dataSet="ggChannelName.csv">Channel Name</lineEdit>
+
+	<label x="0" y="52" width="50" height="20">Token</label>
+	<lineEdit id="token" x="80" y="50" width="330" height="20" dataSet="ggtoken.csv">token</lineEdit>
+
+	<label x="0" y="75" width="400" height="20">URLは以下の形式で入力してください。末尾に /details 等がついていると無効です。</label>
+	<label x="0" y="90" width="400" height="20">例：https://smash.gg/tournament/evo-japan-2020</label>
+	<label x="0" y="115" width="400" height="20">Channel Name確認： 大会ページの設定 > ステーションとストリーム 上部から</label>
+	<label x="0" y="130" width="400" height="20">実際にその配信先で配信している必要はありません。</label>
+	<label x="0" y="155" width="400" height="20">token作成： プロフィール設定 > Developer Settings > 新しいトークンを作成 から</label>
+	<label x="0" y="180" width="400" height="20" >一度保存すると ggurl.csv/ggChannelName.csv/ggtoken.csv に格納されます。</label>
+	
+	
 </tab>
 
 

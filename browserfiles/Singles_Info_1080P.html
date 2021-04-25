@@ -10,7 +10,6 @@
 			var timestampOld;
 			var timestamp;
 
-			var gg;
 			var pName1;
 			var pSponsor1;
 			var pName1_bg;
@@ -97,6 +96,13 @@
 			var pName2_font_color;
 			var pName2_font_auto_color;
 
+			var gg;
+			var ggurl;
+			var ggChannelName;
+			var ggToken;
+
+			var ggsetId;
+			var ggsetIdOld;
 			var ggFullRoundText;
 			var ggPrefix_1;
 			var ggGamerTag_1;
@@ -108,7 +114,10 @@
 			var xmlDoc;
 
 			var xhr = new XMLHttpRequest();
-
+			
+			var ggxhr = new XMLHttpRequest();
+        	var res;
+			
 			var animating = false;
 			var doUpdate = false;
 
@@ -118,7 +127,7 @@
 
 				var timeout = this.window.setInterval(function() {
 					pollHandler();
-				}, 250);
+				}, 2000);
 
 				$('#pName1').html('');
 				$('#pName1_bg').html('');
@@ -154,7 +163,8 @@
 			function pollHandler()
 			{
 			  loadData();
-			  if (timestamp != timestampOld) {
+			  getDataFromSmashgg();
+			  if (timestamp != timestampOld || ggsetId != ggsetIdOld) {
 				  doUpdate = true;
 			  }
 			  if (!animating && doUpdate) {
@@ -250,6 +260,9 @@
 						pName2_font_auto_color = parseInt(pName2_bg_R) + parseInt(pName2_bg_G) + parseInt(pName2_bg_B);
 
 						gg = getValueFromTag(xmlDoc,'gg');
+						ggurl = getValueFromTag(xmlDoc,'url');
+						ggChannelName = getValueFromTag(xmlDoc,'channelName');
+						ggToken = getValueFromTag(xmlDoc,'token');
 
 						timestampOld = timestamp;
 						timestamp = getValueFromTag(xmlDoc,'timestamp');
@@ -258,10 +271,6 @@
 			}
 
 			function updateBoard() {
-
-
-
-
 
 				if ( $('#pName1').html() !=  ('<span style="color:rgb('+pName1_sponsor_RGB+');">'+pSponsor1+'</span>' +' '+ pName1) ) {
 					animating = true;
@@ -284,7 +293,7 @@
 							}
 
 
-							$('#pName1').html('<span style="color:rgb('+pName1_sponsor_RGB+');">'+pSponsor1+'</span>' +' '+ pName1)
+							$('#pName1').html('<span style="color:rgb('+pName1_sponsor_RGB+');">'+pSponsor1+'</span>' +' '+ pName1) // ここをコンソールとする！！！！！！！！！！！！！！！！！！！！！！！！！
 							.css({
 								'color' : ' '+pName1_font_color+' '
 							});
@@ -749,10 +758,118 @@
 				}
 			}
 
-			function getDataFromSmashgg () {
+			// ggのAPIを叩く関数。取得したデータをグローバル変数に代入する関数を内包する
+			function getDataFromSmashgg(){
+            
+				// ダイアログに入力するggの情報
+            	ggurl = "https://smash.gg/tournament/api-test-1";
+				ggChannelName = "eastgeeksmash";
+				ggToken = "f775c5940f69e1d7132c7106d0ce4661";
 				
+				// ggのAPI叩く際に必要な情報と整形
+				const endpoint = "https://api.smash.gg/gql/alpha";
+				const smashggURL = "https://smash.gg";
+				const tourneySlug = ggurl.substring(smashggURL.length + 1,ggurl.length);
+
+				// クエリの内容
+				const graphqlQuery = `
+					query StreamQueueOnTournament($tourneySlug: String!) {
+						tournament(slug: $tourneySlug) {
+							streamQueue {
+								stream{
+									streamName
+								}
+								sets {
+									id
+									fullRoundText
+									slots {
+										entrant {
+											participants{
+												prefix
+												gamerTag
+												user{
+													authorizations(types: TWITTER) {
+														externalUsername
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				`;
+				// POSTの内容のオブジェクト。この形式にして！とggの公式ドキュメントで指定されている。query部分のみ長いので別記
+				const HTTPbody = {
+					query: graphqlQuery,
+					variables: { "tourneySlug": tourneySlug}
+				};
+				
+				// POSTのBodyをJSON化
+				const jsonBody = JSON.stringify(HTTPbody);
+
+				// HTTPリクエスト部分
+				ggxhr.open("POST", endpoint);
+				ggxhr.setRequestHeader("Authorization", "Bearer " + ggToken);
+				ggxhr.setRequestHeader("Content-Type", "application/json");
+				ggxhr.setRequestHeader("Accept", "application/json");
+
+				ggxhr.onreadystatechange = function () {
+					
+					// レスポンス受け取り
+					if(ggxhr.readyState === XMLHttpRequest.DONE) {
+						var status = ggxhr.status;
+						if (status === 0 || (status >= 200 && status < 400)) {
+						// リクエストが正常に終了したらresにJSON化したレスポンスを代入
+						res = JSON.parse(ggxhr.responseText);
+
+						// 一番直近の配信台カード情報をグローバル変数に代入する
+						getLatestMatchData(res);
+						console.log(res);
+						ggxhr.abort;
+						} else {
+						// あらら! リクエストでエラーが発生しました!
+						console.log("HTTPエラー");
+						ggxhr.abort;
+						}
+					}
+				};
+				ggxhr.send(jsonBody);
+
 			}
 
+     		// 一番直近の配信台カード情報をグローバル変数に代入する関数
+     		function getLatestMatchData(json){
+        		const targetelement = json.data.tournament.streamQueue.find((v) => v.stream.streamName == ggChannelName);
+
+				ggFullRoundText = targetelement.sets[0].fullRoundText;
+				ggPrefix_1 = targetelement.sets[0].slots[0].entrant.participants[0].prefix;
+				ggPrefix_2 = targetelement.sets[0].slots[1].entrant.participants[0].prefix;
+				ggGamerTag_1 = targetelement.sets[0].slots[0].entrant.participants[0].gamerTag;
+				ggGamerTag_2 = targetelement.sets[0].slots[1].entrant.participants[0].gamerTag;
+				// userがnull、またはTwitterが登録されていない場合はnullを代入
+				ggTwitter_1 = targetelement.sets[0].slots[0].entrant.participants[0].user === null || targetelement.sets[0].slots[0].entrant.participants[0].user.authorizations[0]  === undefined ? null : targetelement.sets[0].slots[0].entrant.participants[0].user.authorizations[0].externalUsername;
+				ggTwitter_2 = targetelement.sets[0].slots[1].entrant.participants[0].user === null || targetelement.sets[0].slots[1].entrant.participants[0].user.authorizations[0]  === undefined ? null : targetelement.sets[0].slots[1].entrant.participants[0].user.authorizations[0].externalUsername;
+
+				ggsetIdOld = ggsetId;
+				ggsetId = targetelement.sets[0].id;
+
+				replaceWithGG();
+
+
+			}
+
+			// gg=1の時、ggに関するグローバル変数で元のグローバル変数を置き換える関数
+			function replaceWithGG() {
+				stage = gg==="1"  ? ggFullRoundText : stage;
+				pName1 = gg==="1" ? ggGamerTag_1 : pName1;
+				pSponsor1 = gg==="1" ? ggPrefix_1 : pSponsor1;
+				pScore1 = gg==="1" ? pScore1 : pScore1; //未実装
+				pName2 = gg==="1" ? ggGamerTag_2 : pName2;
+				pSponsor2 = gg==="1" ? ggPrefix_2 : pSponsor2;
+				pScore2 = gg==="1" ? pScore2 : pScore2; //未実装
+			}
 
 
 	</script>

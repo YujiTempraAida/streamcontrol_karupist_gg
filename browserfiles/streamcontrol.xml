@@ -1,10 +1,11 @@
 <!DOCTYPE StreamControl>
 <items>
- <timestamp>1617720053</timestamp>
+ <timestamp>1619327862</timestamp>
+ <channelName></channelName>
  <gg>0</gg>
  <intInfo1></intInfo1>
  <logo_name></logo_name>
- <pName1>Zackray [L]</pName1>
+ <pName1>pName1</pName1>
  <pName1_bg_B>45</pName1_bg_B>
  <pName1_bg_B_grad>127</pName1_bg_B_grad>
  <pName1_bg_G>46</pName1_bg_G>
@@ -17,7 +18,7 @@
  <pName1_sponsor_B>255</pName1_sponsor_B>
  <pName1_sponsor_G>255</pName1_sponsor_G>
  <pName1_sponsor_R>255</pName1_sponsor_R>
- <pName2>Shuton [L]</pName2>
+ <pName2>pName2</pName2>
  <pName2_bg_B>255</pName2_bg_B>
  <pName2_bg_B_grad>255</pName2_bg_B_grad>
  <pName2_bg_G>144</pName2_bg_G>
@@ -50,8 +51,8 @@
  <pScore2_bg_deg>90</pScore2_bg_deg>
  <pScore2_bg_grad>off</pScore2_bg_grad>
  <pScore2_font_color>black</pScore2_font_color>
- <pSponsor1>GW</pSponsor1>
- <pSponsor2>SST</pSponsor2>
+ <pSponsor1>a</pSponsor1>
+ <pSponsor2>b</pSponsor2>
  <stage></stage>
  <stage_bg_B>255</stage_bg_B>
  <stage_bg_B_grad>255</stage_bg_B_grad>
@@ -63,4 +64,6 @@
  <stage_bg_grad>off</stage_bg_grad>
  <stage_font_color>black</stage_font_color>
  <stage_typing>勝者側決勝</stage_typing>
+ <token></token>
+ <url></url>
 </items>
