@@ -110,6 +110,8 @@
 			var ggPrefix_2;
 			var ggGamerTag_2;
 			var ggTwitter_2;
+			var ggpScore1;
+        	var ggpScore2;
 
 			var xmlDoc;
 
@@ -117,6 +119,7 @@
 			
 			var ggxhr = new XMLHttpRequest();
         	var res;
+			var resOld;
 			
 			var animating = false;
 			var doUpdate = false;
@@ -164,7 +167,7 @@
 			{
 			  loadData();
 			  getDataFromSmashgg();
-			  if (timestamp != timestampOld || ggsetId != ggsetIdOld) {
+			  if (timestamp != timestampOld || res != resOld) {
 				  doUpdate = true;
 			  }
 			  if (!animating && doUpdate) {
@@ -770,7 +773,6 @@
 				const endpoint = "https://api.smash.gg/gql/alpha";
 				const smashggURL = "https://smash.gg";
 				const tourneySlug = ggurl.substring(smashggURL.length + 1,ggurl.length);
-
 				// クエリの内容
 				const graphqlQuery = `
 					query StreamQueueOnTournament($tourneySlug: String!) {
@@ -778,18 +780,26 @@
 							streamQueue {
 								stream{
 									streamName
-								}
-								sets {
-									id
-									fullRoundText
-									slots {
-										entrant {
-											participants{
-												prefix
-												gamerTag
-												user{
-													authorizations(types: TWITTER) {
-														externalUsername
+									}
+									sets {
+										id
+										fullRoundText
+										slots {
+											entrant {
+												participants{
+													prefix
+													gamerTag
+													user{
+														authorizations(types: TWITTER) {
+															externalUsername
+														}
+													}
+												}
+											}
+											standing {
+												stats {
+													score {
+														value
 													}
 												}
 											}
@@ -798,8 +808,7 @@
 								}
 							}
 						}
-					}
-				`;
+					`;
 				// POSTの内容のオブジェクト。この形式にして！とggの公式ドキュメントで指定されている。query部分のみ長いので別記
 				const HTTPbody = {
 					query: graphqlQuery,
@@ -821,17 +830,18 @@
 					if(ggxhr.readyState === XMLHttpRequest.DONE) {
 						var status = ggxhr.status;
 						if (status === 0 || (status >= 200 && status < 400)) {
-						// リクエストが正常に終了したらresにJSON化したレスポンスを代入
-						res = JSON.parse(ggxhr.responseText);
+							resOld = res;
+							// リクエストが正常に終了したらresにJSON化したレスポンスを代入
+							res = JSON.parse(ggxhr.responseText);
 
-						// 一番直近の配信台カード情報をグローバル変数に代入する
-						getLatestMatchData(res);
-						console.log(res);
-						ggxhr.abort;
+							// 一番直近の配信台カード情報をグローバル変数に代入する
+							getLatestMatchData(res);
+							console.log(res);
+							ggxhr.abort;
 						} else {
-						// あらら! リクエストでエラーが発生しました!
-						console.log("HTTPエラー");
-						ggxhr.abort;
+							// あらら! リクエストでエラーが発生しました!
+							console.log("HTTPエラー");
+							ggxhr.abort;
 						}
 					}
 				};
@@ -848,12 +858,20 @@
 				ggPrefix_2 = targetelement.sets[0].slots[1].entrant.participants[0].prefix;
 				ggGamerTag_1 = targetelement.sets[0].slots[0].entrant.participants[0].gamerTag;
 				ggGamerTag_2 = targetelement.sets[0].slots[1].entrant.participants[0].gamerTag;
+				ggpScore1 = targetelement.sets[0].slots[0].standing.stats.score.value;
+				ggpScore2 = targetelement.sets[0].slots[1].standing.stats.score.value;
 				// userがnull、またはTwitterが登録されていない場合はnullを代入
 				ggTwitter_1 = targetelement.sets[0].slots[0].entrant.participants[0].user === null || targetelement.sets[0].slots[0].entrant.participants[0].user.authorizations[0]  === undefined ? null : targetelement.sets[0].slots[0].entrant.participants[0].user.authorizations[0].externalUsername;
 				ggTwitter_2 = targetelement.sets[0].slots[1].entrant.participants[0].user === null || targetelement.sets[0].slots[1].entrant.participants[0].user.authorizations[0]  === undefined ? null : targetelement.sets[0].slots[1].entrant.participants[0].user.authorizations[0].externalUsername;
 
+				// setId単位で更新しようとすると、game情報を更新できない。よって削除
+				/*
 				ggsetIdOld = ggsetId;
 				ggsetId = targetelement.sets[0].id;
+				*/
+				
+				// 代わりに833行目に以下を挿入してレスポンス自体に変更があった場合に更新するようにする
+				// resOld = res;
 
 				replaceWithGG();
 
@@ -865,10 +883,10 @@
 				stage = gg==="1"  ? ggFullRoundText : stage;
 				pName1 = gg==="1" ? ggGamerTag_1 : pName1;
 				pSponsor1 = gg==="1" ? ggPrefix_1 : pSponsor1;
-				pScore1 = gg==="1" ? pScore1 : pScore1; //未実装
+				pScore1 = gg==="1" ? ggpScore1 : pScore1; //未実装
 				pName2 = gg==="1" ? ggGamerTag_2 : pName2;
 				pSponsor2 = gg==="1" ? ggPrefix_2 : pSponsor2;
-				pScore2 = gg==="1" ? pScore2 : pScore2; //未実装
+				pScore2 = gg==="1" ? ggpScore2 : pScore2; //未実装
 			}
 
 

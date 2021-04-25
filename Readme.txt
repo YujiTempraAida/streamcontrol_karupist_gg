@@ -19,11 +19,10 @@ Smash.gg関連機能について
 - prefix（スポンサー名）
 - プレイヤー名
 - ラウンド
+- スコア
 を一番直近の配信台カードの情報を自動で読み取って更新します。
 
 チェックを外して保存すると通常の手入力StreamControlに戻ります。
-
-スコア自動更新は未対応。
 
 トークン作成はこちら参照
 https://developer.smash.gg/docs/authentication/

@@ -1,6 +1,6 @@
 {
-    "channelName": "",
-    "gg": "0",
+    "channelName": "eastgeeksmash",
+    "gg": "1",
     "intInfo1": "",
     "logo_name": "",
     "pName1": "pName1",
@@ -62,7 +62,7 @@
     "stage_bg_grad": "off",
     "stage_font_color": "black",
     "stage_typing": "勝者側決勝",
-    "timestamp": "1619327862",
-    "token": "",
-    "url": ""
+    "timestamp": "1619384113",
+    "token": "f775c5940f69e1d7132c7106d0ce4661",
+    "url": "https://smash.gg/tournament/api-test-1"
 }

@@ -1,8 +1,8 @@
 <!DOCTYPE StreamControl>
 <items>
- <timestamp>1619327862</timestamp>
- <channelName></channelName>
- <gg>0</gg>
+ <timestamp>1619384113</timestamp>
+ <channelName>eastgeeksmash</channelName>
+ <gg>1</gg>
  <intInfo1></intInfo1>
  <logo_name></logo_name>
  <pName1>pName1</pName1>
@@ -64,6 +64,6 @@
  <stage_bg_grad>off</stage_bg_grad>
  <stage_font_color>black</stage_font_color>
  <stage_typing>勝者側決勝</stage_typing>
- <token></token>
- <url></url>
+ <token>f775c5940f69e1d7132c7106d0ce4661</token>
+ <url>https://smash.gg/tournament/api-test-1</url>
 </items>
