@@ -858,8 +858,8 @@
 				ggPrefix_2 = targetelement.sets[0].slots[1].entrant.participants[0].prefix;
 				ggGamerTag_1 = targetelement.sets[0].slots[0].entrant.participants[0].gamerTag;
 				ggGamerTag_2 = targetelement.sets[0].slots[1].entrant.participants[0].gamerTag;
-				ggpScore1 = targetelement.sets[0].slots[0].standing.stats.score.value;
-				ggpScore2 = targetelement.sets[0].slots[1].standing.stats.score.value;
+				ggpScore1 = targetelement.sets[0].slots[0].standing.stats.score.value ? targetelement.sets[0].slots[0].standing.stats.score.value : "0";
+				ggpScore2 = targetelement.sets[0].slots[1].standing.stats.score.value ? targetelement.sets[0].slots[1].standing.stats.score.value : "0";
 				// userがnull、またはTwitterが登録されていない場合はnullを代入
 				ggTwitter_1 = targetelement.sets[0].slots[0].entrant.participants[0].user === null || targetelement.sets[0].slots[0].entrant.participants[0].user.authorizations[0]  === undefined ? null : targetelement.sets[0].slots[0].entrant.participants[0].user.authorizations[0].externalUsername;
 				ggTwitter_2 = targetelement.sets[0].slots[1].entrant.participants[0].user === null || targetelement.sets[0].slots[1].entrant.participants[0].user.authorizations[0]  === undefined ? null : targetelement.sets[0].slots[1].entrant.participants[0].user.authorizations[0].externalUsername;
